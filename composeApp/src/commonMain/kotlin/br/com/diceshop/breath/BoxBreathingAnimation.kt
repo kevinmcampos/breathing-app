@@ -19,18 +19,25 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.dp
+import coil3.compose.LocalPlatformContext
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-// Define animation states
 enum class BreathState {
-    BreathIn, Hold1, BreathOut, Hold2
+    BreathIn, Hold1, BreathOut, Hold2;
+
+    fun text() = when (this) {
+        BreathIn -> "Breathe in"
+        Hold1 -> "Hold"
+        BreathOut -> "Breathe out"
+        Hold2 -> "Hold"
+    }
 }
 
 @Composable
 fun BoxBreathingAnimation() {
     val squareSize = 400f
-    val animationDuration = 4000 // 4 seconds
+    val animationDuration = 6000 // 4 seconds
 
     val squareFillProgress = remember { Animatable(0f) }
 
@@ -41,14 +48,14 @@ fun BoxBreathingAnimation() {
     // 3 - right bottom
     // 4 - left bottom (again)
     val ballPosition = remember { Animatable(0f) }
-    println("ballPosition: ${ballPosition.value}")
 
     var breathState by remember { mutableStateOf(BreathState.BreathIn) }
-
+    val context = LocalPlatformContext.current
     LaunchedEffect(breathState) {
         launch {
             when (breathState) {
                 BreathState.BreathIn -> {
+                    playSound(context, "breath_in1.MP3")
                     squareFillProgress.animateTo(
                         targetValue = 1f,
                         animationSpec = tween(animationDuration, easing = LinearEasing)
@@ -56,10 +63,12 @@ fun BoxBreathingAnimation() {
                 }
 
                 BreathState.Hold1 -> {
+                    playSound(context, "hold1_1.MP3")
                     delay(animationDuration.toLong())
                 }
 
                 BreathState.BreathOut -> {
+                    playSound(context, "breath_out1.MP3")
                     squareFillProgress.animateTo(
                         targetValue = 0f,
                         animationSpec = tween(animationDuration, easing = LinearEasing)
@@ -67,6 +76,7 @@ fun BoxBreathingAnimation() {
                 }
 
                 BreathState.Hold2 -> {
+                    playSound(context, "hold2_1.MP3")
                     delay(animationDuration.toLong())
                 }
             }
@@ -154,7 +164,7 @@ fun BoxBreathingAnimation() {
     }
 
     Text(
-        text = breathState.toString(),
+        text = breathState.text(),
         modifier = Modifier.padding(16.dp)
     )
 }

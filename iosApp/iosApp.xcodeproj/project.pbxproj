@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,10 @@
 		A93A953E29CC810D00F8E227 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A93A954129CC810D00F8E227 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		E816B4BE2D17C7BA0089AEBE /* Resources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Resources; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A93A953429CC810C00F8E227 /* Frameworks */ = {
@@ -50,6 +54,7 @@
 		A93A953929CC810C00F8E227 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				E816B4BE2D17C7BA0089AEBE /* Resources */,
 				A93A953A29CC810C00F8E227 /* iosApp.swift */,
 				A93A953E29CC810D00F8E227 /* Assets.xcassets */,
 				A93A954029CC810D00F8E227 /* Preview Content */,
@@ -87,6 +92,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E816B4BE2D17C7BA0089AEBE /* Resources */,
 			);
 			name = iosApp;
 			productName = iosApp;
